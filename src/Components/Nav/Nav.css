@@ -1,0 +1,53 @@
+nav {
+    background-color: #252631;
+}
+
+.nav-link {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.activeLink {
+    color: #E4D804 !important
+}
+
+/* ------search */
+nav input {
+    background-color: #12151E !important;
+    color: #929396 !important;
+    transition: all 0.3s;
+}
+
+nav input::placeholder {
+    color: #929396 !important;
+    font-size: 14px;
+}
+
+nav input:focus {
+    background-color: #fff !important;
+    box-shadow: 0 0 0 0.1rem #E4D804 !important;
+}
+
+.input-container i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    /* Adjust the left position based on your design */
+    color: #E4D804;
+    /* Set the color of the icon */
+}
+
+.navbar-toggler,
+.navbar-toggler:focus {
+    background-color: #12151E;
+    border: #929396 1px solid !important;
+    box-shadow: 0 0 0.1rem #E4D804;
+}
+
+@media (max-width: 989px) {
+    .navbar-collapse {
+        text-align: left;
+
+    }
+}
