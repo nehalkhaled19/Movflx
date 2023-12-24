@@ -7,10 +7,6 @@ nav {
     font-size: 14px;
 }
 
-.activeLink {
-    color: #E4D804 !important
-}
-
 /* ------search */
 nav input {
     background-color: #12151E !important;
@@ -40,14 +36,12 @@ nav input:focus {
 
 .navbar-toggler,
 .navbar-toggler:focus {
-    background-color: #12151E;
-    border: #929396 1px solid !important;
-    box-shadow: 0 0 0.1rem #E4D804;
+    background-color: #e4d904e7;
+    box-shadow: 0 0 0 0;
 }
 
 @media (max-width: 989px) {
     .navbar-collapse {
         text-align: left;
-
     }
 }

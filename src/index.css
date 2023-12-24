@@ -6,9 +6,12 @@ body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font-size: 16px */
+  color: white;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.main-color{
+  color: #E4D804 !important
+}
+.main-bg{
+  background-color: #E4D804;
 }

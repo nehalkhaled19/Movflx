@@ -9,13 +9,15 @@ import NotFound from './Components/NotFound/NotFound'
 import TV from './Components/TV/TV'
 import Home from './Components/Home/Home'
 import Movies from './Components/Movies/Movies'
-
-
-
+import { QueryClient, QueryClientProvider } from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
 
 
 export default function App() {
+  // query client
+  let queryClient = new QueryClient()
 
+  // react router
   let root = createBrowserRouter([
     {
       path: '/', element: <Layout></Layout>, children: [
@@ -31,7 +33,11 @@ export default function App() {
     }
   ])
   return <>
-    <RouterProvider router={root}></RouterProvider>
-    </>
+
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={root}></RouterProvider>
+      <ReactQueryDevtools initialIsOpen='true' position='bottom-right'></ReactQueryDevtools>
+    </QueryClientProvider>
+  </>
 
 }
