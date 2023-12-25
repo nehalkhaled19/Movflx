@@ -1,22 +1,18 @@
-/* ---------------------bg--------------------- */
+/* ---------------------Home--------------------- */
 .Home {
     background-image: url('../../Images/s_slider_bg.jpg');
     background-size: cover;
     background-position: center center;
     font-size: 16px;
 }
-/* ---------------------font weight--------------------- */
-.Home h6, .Home h2, .Home button{
-    font-weight: 700;
-}
-/* ---------------------font size--------------------- */
+/* font size */
 .Home h6 {
     font-size: 1.6em;
 }
-.Home h2 {
+.Home h2{
     font-size: 3.75em;
 }
-/* ---------------------button--------------------- */
+/* button */
 .Home button{
     font-size: 0.75em;
     border: #E4D804 2px solid;
@@ -28,6 +24,7 @@
     background-color: #E4D804;
     color: #252631;
 }
+/* layer */
 .layer-carrier{
     position: relative;
     overflow: hidden;
@@ -48,4 +45,102 @@
 .layer-carrier img{
     border: rgb(184 177 44) 10px solid;
     box-shadow: 0px 1px 13px 0px rgb(184 177 44);
+}
+/* ---------------------Trending Movies--------------------- */
+.trending-movies{
+    background-image: url('../../Images/ucm_bg02\ \(1\).jpg');
+    background-size: cover;
+    background-position: center center;
+}
+.trending-movies h2::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: url(../../Images/title_shape.png);
+    width: 98px;
+    height: 7px;
+}
+.trending-movies h2{
+    font-size: 2.25em;
+    padding: 15px 0;
+    margin: 0px 0 50px;
+}
+/* Rate */
+
+  div[role="progressbar"] {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    --size: 3.5em;
+    --fg: #e4d904e7;
+    --bg: #12151E;
+    --pgPercentage: calc(var(--value) / 10 * 100);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, #252631 80%, transparent 0 99.9%, #252631 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+      ;
+ font-weight: 700;
+    font-size: calc(var(--size) / 5);
+    color: #fff;
+  }
+  
+  div[role="progressbar"]::before {
+    counter-reset: percentage calc(var(--value) / 10 * 100);
+    content: counter(percentage) '%';
+  }
+  
+@keyframes load2 {
+    0% {z-index: 100;transform: rotate(180deg);}
+
+    100% {z-index: 100;transform: rotate(270deg);}
+}
+
+@keyframes load3 {
+    0% {z-index: 100;transform: rotate(180deg);}
+
+    100% {
+        z-index: 100;transform: rotate(315deg);}
+}
+
+
+.slick-prev, .slick-next {
+    background-color: #E4D804;
+}
+.custom-arrows-container{
+/* background-color: #fff; */
+width: auto;
+display: flex;
+align-items: center;
+}
+.slider-btn{
+    border: #292b37 2px solid;
+    background: #20212b;
+}
+.slider-btn button{
+    color: #e3dfdf;
+}
+.slider-btn button:focus, .slider-btn button:hover, .slider-btn button:active{
+border: 0;
+color: #E4D804;
+box-shadow: 0 0 0 0 ;
+}
+.btn{
+    border: 0 !important;
+}
+.prev::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 26px;
+    background: #292b37;
 }
