@@ -23,7 +23,6 @@ export default function Home() {
     return fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', options)
       .then(response => response.json())
   }
-
   // Use React Query
   let x = useQuery('Movies', getMovies)
   let movies = x.data?.results.slice(5, 10)
@@ -32,7 +31,7 @@ export default function Home() {
   useEffect(() => {
     AOS.init();
   }, [])
-  
+
   // First slider settings//
   const settings = {
     dots: false,
@@ -49,12 +48,13 @@ export default function Home() {
   // ---------------------Get Trending Movies---------------------//
   // fetch data
   function getTrendingMovies() {
-    fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
+    return fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
       .then(response => response.json())
   }
   // Use React Query
-  let { data } = useQuery('Movies', getMovies)
+  let { data } = useQuery('TrendingMovies', getTrendingMovies)
   let trendingMovies = data?.results
+  console.log(data);
   // Sec slider settings//
   const slider = React.useRef(null);
   const settings2 = {
@@ -64,11 +64,24 @@ export default function Home() {
     slidesToShow: 5,
     swipeToSlide: true,
     arrows: false,
-    afterChange: function (index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      );
-    }
+  }
+    // ---------------------Get Trending Tv---------------------//
+  // fetch data
+  function getTrendingTV() {
+    return fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', options)
+    .then(response => response.json())
+  }
+  // Use React Query
+  let tv = useQuery('TV', getTrendingTV)
+  let trendingTV = tv.data?.results
+  console.log(trendingTV);
+  const settings3 = {
+    className: "center",
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 5,
+    swipeToSlide: true,
+    arrows: false,
   }
 
 
@@ -117,7 +130,7 @@ export default function Home() {
     <section className='trending-movies py-5'>
       <div className="container">
         <div className="d-flex ">
-          <h2 className='position-relative main-font-weight'>Trending Movies</h2>
+          <h2 className='position-relative main-font-weight main-h2'>Trending Movies</h2>
           {/* Custom arrow container */}
           <div className="custom-arrows-container ms-auto">
             <div className='slider-btn rounded-4 '>
@@ -137,8 +150,43 @@ export default function Home() {
               <div className='col-md-2 ' key={e.id}>
                 <div className='py-3 px-0 '>
                   <div className='position-relative mx-3'>
-                    <img src={`https://image.tmdb.org/t/p/original${e.poster_path}`} className='w-100 rounded-3' alt={e.title} />
+                    <img src={`https://image.tmdb.org/t/p/original${e.poster_path}`} className='w-100 rounded-3' style={{height:'350px'}} alt={e.title} />
                     <h6 className='my-3'>{e.title}</h6>
+                    <div role="progressbar" className='vote' aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" rate={e.vote_average} style={{ "--value": `${e.vote_average}` }}></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </main>
+      </div>
+    </section>
+     {/* Trending TV Section */}
+     <section className='trending-TV py-5'>
+      <div className="container">
+        <div className="d-flex ">
+          <h2 className='position-relative main-font-weight main-h2'>Trending TV</h2>
+          {/* Custom arrow container */}
+          <div className="custom-arrows-container ms-auto">
+            <div className='slider-btn rounded-4 '>
+              <button className='btn px-3 position-relative prev' onClick={() => slider?.current?.slickPrev()}>
+                <i class="fas fa-angle-left left"></i>
+              </button>
+              <button className='btn px-3 ' onClick={() => slider?.current?.slickNext()}>
+                <i class="fas fa-angle-right arrow"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <main className='row flex-wrap gy-4'>
+          <Slider ref={slider} {...settings3} className='px-2'  >
+            {trendingTV?.map((e) => (
+              <div className='col-md-2 ' key={e.id}>
+                <div className='py-3 px-0 '>
+                  <div className='position-relative mx-3'>
+                    <img src={`https://image.tmdb.org/t/p/original${e.poster_path}`} className='w-100 rounded-3' style={{height:'350px'}} alt={e.title} />
+                    <h6 className='my-3'>{e.name}</h6>
                     <div role="progressbar" className='vote' aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" rate={e.vote_average} style={{ "--value": `${e.vote_average}` }}></div>
                   </div>
                 </div>
